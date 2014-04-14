@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>mybatis</title>
+</head>
+
+<body>
+<div class="area">
+	<div class="title">环境搭建</div>
+	<div class="content">依赖的jar包：mybatis-3.2.2.jar；配置文件如下：
+	</div>
+	
+	<div class="code">
+		<pre class="xml">
+mybatis-config.xml
+
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;!DOCTYPE configuration  
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+
+&lt;configuration>
+	&lt;!-- 属性替换 -->
+	&lt;properties resource="mysql.properties">
+		&lt;property name="jdbc.driverClassName" value="com.mysql.jdbc.Driver"/>
+		&lt;property name="jdbc.url" value="jdbc:mysql://localhost:3306/student_manager"/>
+		&lt;property name="username" value="root"/>
+		&lt;property name="password" value="limingnihao"/>
+	&lt;/properties>
+	
+	&lt;!-- 一些设置 -->
+	&lt;settings>
+		&lt;setting name="cacheEnabled" value="true" />
+		&lt;setting name="lazyLoadingEnabled" value="true" />
+		&lt;setting name="multipleResultSetsEnabled" value="true" />
+		&lt;setting name="useColumnLabel" value="true" />
+		&lt;setting name="useGeneratedKeys" value="false" />
+		&lt;setting name="enhancementEnabled" value="false" />
+		&lt;setting name="defaultExecutorType" value="SIMPLE" />
+	&lt;/settings>
+
+	&lt;typeAliases>
+		&lt;!-- 单一配置 -->
+		&lt;typeAlias type="com.baofoo.cott.entity.User" alias="User"/>
+		&lt;!-- 以包的形式定义别名，类名就是其别名【可减少配置，但有可能引起冲突】 -->
+		&lt;package name="com.baofoo.cott.entity"/>
+	&lt;/typeAliases>
+
+	&lt;!-- 类型句柄 -->
+	&lt;typeHandlers>
+		&lt;typeHandler javaType="String" jdbcType="VARCHAR" handler="liming.student.manager.type.LimingStringTypeHandler"/>
+	&lt;/typeHandlers>
+
+	&lt;objectFactory type="">
+	&lt;/objectFactory>
+	
+	&lt;plugins>
+		&lt;plugin interceptor="">&lt;/plugin>
+	&lt;/plugins>
+
+	&lt;environments default="development">
+		&lt;environment id="development">
+			&lt;transactionManager type="JDBC"/>
+			&lt;dataSource type="POOLED">
+				&lt;property name="driver" value="${driver}"/>  
+                &lt;property name="url" value="${url}"/>  
+                &lt;property name="username" value="${username}"/>  
+                &lt;property name="password" value="${password}"/>
+			&lt;/dataSource>
+		&lt;/environment>
+	&lt;/environments>
+
+	&lt;databaseIdProvider type="">
+	&lt;/databaseIdProvider>
+
+	&lt;mappers>
+		&lt;mapper resource="org/mybatis/example/BlogMapper.xml"/>
+	&lt;/mappers>
+&lt;/configuration>
+		</pre>
+		<div class="tu">
+			<img src="image/ml.png" alt="配置结构说明" />
+		</div>
+	</div>
+	
+</div>
+<div class="area">
+	<div class="title">与spring的整合配置</div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+			 
+
+
+&lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	&lt;property name="configLocation" value="classpath:mybatis-config.xml" />
+	&lt;property name="dataSource" ref="dataSource" />
+&lt;/bean>
+
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title">mybatis配置文件的加载</div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+String resource = "org/mybatis/example/mybatis-config.xml";
+InputStream inputStream = Resources.getResourceAsStream(resource);
+SqlSessionFactory  sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title">mapper实体映射文件</div>
+	<div class="content">将dao的实现配置在该文件中</div>
+	<div class="code">
+		<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+&lt;mapper namespace="com.baofoo.custody.dao.ICustodyDao">
+&lt;/mapper>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title">下面就开始，每一个标签的配置详解</div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+<div class="area">
+	<div class="title"></div>
+	<div class="content"></div>
+	<div class="code">
+		<pre>
+		</pre>
+	</div>
+</div>
+
+</body>
+</html>
